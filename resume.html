@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Matcher</title>
+    <style>
+        body { font-family: Arial; max-width: 600px; margin: auto; padding: 20px; }
+        h1 { color: #2c3e50; }
+        textarea { width: 100%; height: 200px; }
+        input[type="submit"] { padding: 10px 20px; margin-top: 10px; }
+        .result { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>🧠 Resume to JD Matcher</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <label>Upload Resume (PDF):</label><br>
+        <input type="file" name="resume" required><br><br>
+
+        <label>Paste Job Description:</label><br>
+        <textarea name="jd" placeholder="Paste job description here..." required>{{ jd_text or "" }}</textarea><br>
+
+        <input type="submit" value="Match!">
+    </form>
+
+    {% if feedback %}
+    <div class="result">
+        <p>{{ feedback }}</p>
+        <p>Score: {{ "%.2f"|format(score) }}</p>
+    </div>
+    {% endif %}
+</body>
+</html>
